@@ -17,5 +17,5 @@
   lineinfile: "dest=/etc/php/mods-available/newrelic.ini state=present regexp='^newrelic.appname' line='newrelic.appname = \"{{ newrelic.appname }}\"'"
 
 - name: activate newrelic
-  shell: phpenmod newrelic
+  shell: phpenmod -s ALL -v ALL newrelic
   notify: restart newrelic-daemon
