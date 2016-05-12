@@ -10,8 +10,11 @@
   with_items:
     - newrelic-php5
 
-- name: copy newrelic.ini
-  template: src=newrelic.ini.j2 dest=/etc/php5/mods-available/newrelic.ini
+- name: set newrelic license
+  lineinfile: "dest=/etc/php/mods-available/newrelic.ini state=present regexp='^newrelic.license' line='newrelic.license = "{{ newrelic.license }}"'"
+
+- name: set newrelic app name
+  lineinfile: "dest=/etc/php/mods-available/newrelic.ini state=present regexp='^newrelic.appname' line='newrelic.appname = "{{ newrelic.appname }}"'"
 
 - name: activate newrelic
   shell: phpenmod newrelic
