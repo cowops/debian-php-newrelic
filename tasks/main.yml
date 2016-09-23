@@ -10,11 +10,21 @@
   with_items:
     - newrelic-php5
 
-- name: set newrelic license
+- name: set newrelic license for php5
   lineinfile: "dest=/etc/php/mods-available/newrelic.ini state=present regexp='^newrelic.license' line='newrelic.license = \"{{ newrelic.license }}\"'"
+  ignore_errors: yes
 
-- name: set newrelic app name
+- name: set newrelic app name for php5
   lineinfile: "dest=/etc/php/mods-available/newrelic.ini state=present regexp='^newrelic.appname' line='newrelic.appname = \"{{ newrelic.appname }}\"'"
+  ignore_errors: yes
+
+- name: set newrelic license for php7
+  lineinfile: "dest=/etc/php/7.0/mods-available/newrelic.ini state=present regexp='^newrelic.license' line='newrelic.license = \"{{ newrelic.license }}\"'"
+  ignore_errors: yes
+
+- name: set newrelic app name for php7
+  lineinfile: "dest=/etc/php/7.0/mods-available/newrelic.ini state=present regexp='^newrelic.appname' line='newrelic.appname = \"{{ newrelic.appname }}\"'"
+  ignore_errors: yes
 
 - name: activate newrelic
   shell: phpenmod -s ALL -v ALL newrelic
