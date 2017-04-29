@@ -25,7 +25,7 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - { role: loranger.debian-php-newrelic, newrelic.license: "xxxxxxxxxxxxx", newrelic.appname: "Application Name" }
+         - { role: cowops.debian-php-newrelic, newrelic.license: "xxxxxxxxxxxxx", newrelic.appname: "Application Name" }
 
 Tasks
 -----
