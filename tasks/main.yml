@@ -6,9 +6,14 @@
   apt_repository: repo='deb http://apt.newrelic.com/debian/ newrelic non-free' state=present
 
 - name: install newrelic php packages
-  apt: pkg={{ item }} state=latest force=yes update_cache=yes
-  with_items:
-    - newrelic-php5
+  apt:
+    name: {{ packages }}
+    state: latest
+    update_cache: yes
+    force: yes
+  vars:
+    packages:
+      - newrelic-php5
 
 - name: set newrelic license for php5
   lineinfile: "dest=/etc/php/mods-available/newrelic.ini state=present regexp='^newrelic.license' line='newrelic.license = \"{{ newrelic.license }}\"'"
